@@ -3,8 +3,27 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view />
+  <router-view :originalCount="count" @clicked="addCount" />
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+export default defineComponent({
+  setup() {
+    const count = ref(0)
+
+    function addCount(val: number) {
+      console.log('addCount', val)
+      count.value += 1
+    }
+
+    return {
+      count,
+      addCount,
+    }
+  },
+})
+</script>
 
 <style lang="scss">
 #app {
